@@ -90,4 +90,12 @@ describe MotionAwesome do
       # )      
     end    
   end
+  
+  describe "#image" do    
+    it "builds an image correctly" do
+      comp = MotionAwesome.image( :flag, size: 50 ) do |image|
+      end
+      comp.class.should == UIImage
+    end
+  end
 end

@@ -19,6 +19,25 @@ module MotionAwesome
     yield comp if block_given?
     comp
   end
+  
+  def image( icon, options={} )
+    opts = parse_options( icon, options )
+    text = attributed_text(opts)
+    text_size = text.size
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(text_size.width, text_size.height), false, 0)
+    text.drawInRect(CGRectMake(0, 0, text_size.width, text_size.height))  
+    image = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()         
+    image
+  end
+
+  def image_view( icon, options={}, &block )
+    opts = parse_options( icon, options )
+    comp = UIImageView.alloc.initWithFrame( [[0,0],[opts[:size],opts[:size]]] )
+    comp.image = image( icon, options )
+    yield comp if block_given?
+    comp
+  end
 
   def font( size )
     UIFont.fontWithName( 'FontAwesome', size:size )

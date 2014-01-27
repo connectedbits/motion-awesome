@@ -17,7 +17,7 @@ class AppDelegate
 
     setup_appearance
 
-    @samples = %w(A B C D E)
+    @samples = %w(A B C D E F)
 
     true
   end
